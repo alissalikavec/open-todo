@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+
   end
 
   def show
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    #creates and return a new user from username and password params
     @user = User.new(user_params)
 
     if @user.save
