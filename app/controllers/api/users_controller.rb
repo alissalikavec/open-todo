@@ -5,13 +5,13 @@ class Api::UsersController < ApiController
   end
 
   def create
-  	new_user = User.new(user_params)
+  	new_user = User.new
     if new_user.save 
       #returns new user from params
-      render :json => new_user
+      render json: new_user
     else
       #show error message if unsuccessful or lacks a username/password
-      render :json => { :errors => new_user.full_messages }
+      render json: { errors: new_user.full_errors }
     end
   end
 
