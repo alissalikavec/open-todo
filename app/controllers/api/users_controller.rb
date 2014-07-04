@@ -8,8 +8,10 @@ class Api::UsersController < ApiController
   	new_user = User.new(user_params)
     if new_user.save 
       #returns new user from params
+      render :json => new_user
     else
       #show error message if unsuccessful or lacks a username/password
+      render :json => { :errors => new_user.full_messages }
     end
   end
 
