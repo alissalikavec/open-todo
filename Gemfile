@@ -16,6 +16,7 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'sqlite3'
   gem 'pry'
+  gem 'pry-byebug'
   gem 'binding_of_caller'
 end
 
