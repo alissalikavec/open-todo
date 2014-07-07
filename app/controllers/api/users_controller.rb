@@ -1,4 +1,5 @@
 class Api::UsersController < ApiController
+  skip_before_filter :verify_authenticity_token, only: [:create]
   def index
     users = User.all
     render json: users, each_serializer: UserSerializer 
