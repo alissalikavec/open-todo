@@ -11,8 +11,8 @@ class Api::ListsController < ApiController
     list = List.new
   end
 
-  #def edit
-  #end
+  def edit
+  end
 
   def index
     lists = @user.lists
