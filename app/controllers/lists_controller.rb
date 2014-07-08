@@ -1,7 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_user
   before_action :set_list, only: [:show, :edit, :update, :destroy]
-  before_action :check_auth
 
   def show
     @items = @list.items.completed

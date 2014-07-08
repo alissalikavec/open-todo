@@ -1,5 +1,6 @@
 class Api::UsersController < ApiController
   skip_before_filter :verify_authenticity_token, only: [:create]
+
   def index
     users = User.all
     render json: users, each_serializer: UserSerializer 
@@ -16,7 +17,15 @@ class Api::UsersController < ApiController
     end
   end
 
+  def destroy
+    @user.destroy
+    render json: {}, status: :no_content
+  end
+
   private
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:new_user).permit(:username, :password)

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_auth
 
   def index
     @users = User.all
@@ -19,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    #creates and return a new user from username and password params
     @user = User.new(user_params)
 
     if @user.save
