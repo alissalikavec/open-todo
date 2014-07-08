@@ -16,7 +16,7 @@ class Api::ItemsController < ApiController
 
   def destroy
     @item.mark_complete
-    # Not quite sure what json to render here
+    render json: {}, status: :no_content # 204
   end
 
   private

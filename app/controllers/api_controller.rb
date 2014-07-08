@@ -5,6 +5,7 @@ class ApiController < ApplicationController
 	end
 
   	def check_auth
-    	return permission_denied_error unless authenticated?
+  	unless authenticated?
+    	render json: {}, status: :forbidden #403  
   	end
 end
