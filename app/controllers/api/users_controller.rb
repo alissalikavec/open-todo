@@ -31,4 +31,8 @@ class Api::UsersController < ApiController
     params.require(:new_user).permit(:username, :password)
   end
 
+  def role?(base_role)
+    role == base_role.to_s
+  end
+
 end

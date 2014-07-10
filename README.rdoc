@@ -7,3 +7,5 @@
 3) Set up database.yml and your local database. Bundle install.
 
 4) Get hacking.
+
+5) curl -H "Content-Type: application/json" -d '{"new_user": {"username":"admin","password":"adminpass"}}' http://localhost:3000/api/users
