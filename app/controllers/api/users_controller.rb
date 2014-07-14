@@ -1,4 +1,5 @@
 class Api::UsersController < ApiController
+  before_action :authenticated?
   skip_before_filter :verify_authenticity_token, only: [:create]
 
   def index

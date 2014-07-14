@@ -1,7 +1,7 @@
 Todo::Application.routes.draw do
   namespace :api do
     resources :users do 
-      resources :lists, except: [:index]
+      resources :lists
     end
 
     resources :lists, only: [] do

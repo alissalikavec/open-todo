@@ -1,6 +1,9 @@
 class Api::ListsController < ApiController
   before_action :set_user
+  before_action :authenticated?
   before_action :set_list, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token
+
 
   def show
     items = @list.items
@@ -22,6 +25,7 @@ class Api::ListsController < ApiController
   def index
     lists = @user.lists
     authorize lists
+    render json: lists
   end
 
   def create
@@ -36,16 +40,17 @@ class Api::ListsController < ApiController
   end
 
   def update
-    authorize list
-    if list.update(list_params)
+    authorize @list
+    if @list.update(list_params)
       redirect_to user_list_path(@user, @list), notice: 'List was successfully updated.'
+
     else
       render action: 'edit'
     end
   end
 
   def destroy
-    list.destroy
+    @list.destroy
     redirect_to @user
   end
 
@@ -60,6 +65,10 @@ class Api::ListsController < ApiController
   end
 
   def list_params
-    params.require(:list).permit(:name, :user_id)
+    params.require(:list).permit(:name, :user_id, :permissions)
+  end
+
+  def current_user
+    @user
   end
 end
